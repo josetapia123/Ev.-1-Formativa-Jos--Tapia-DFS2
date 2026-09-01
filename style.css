@@ -1,0 +1,29 @@
+/* style.css */
+
+/* Aplicación consistente de bordes redondeados en la tarjeta principal */
+.form-container {
+    border-radius: 1.5rem; /* Borde muy redondeado para un diseño moderno */
+    border: none;
+    background-color: #ffffff;
+}
+
+/* Bordes redondeados para los campos de entrada */
+.custom-input {
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+}
+
+/* Bordes redondeados y estilo para el botón de acción principal */
+.custom-btn {
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+/* Ajuste de comportamiento de Bootstrap para feedback de validación personalizada */
+.invalid-feedback {
+    font-size: 0.85em;
+    font-weight: 500;
+}
