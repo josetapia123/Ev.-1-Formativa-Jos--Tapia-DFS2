@@ -1,29 +1,59 @@
 /* style.css */
 
-/* Aplicación consistente de bordes redondeados en la tarjeta principal */
-.form-container {
-    border-radius: 1.5rem; /* Borde muy redondeado para un diseño moderno */
-    border: none;
-    background-color: #ffffff;
+/* Fondo oscuro y elegante para toda la página */
+body {
+    background-color: #121212 !important;
+    color: #e0e0e0;
 }
 
-/* Bordes redondeados para los campos de entrada */
+/* Diseño personalizado para encabezado y pie de página */
+.custom-header {
+    background: linear-gradient(135deg, #1f1f1f, #343a40) !important;
+    border-bottom: 3px solid #0d6efd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Modificación de la tarjeta para resaltar en el fondo oscuro */
+.form-container {
+    border-radius: 1.5rem;
+    border: none;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ajuste de los inputs para el modo oscuro con bordes redondeados */
 .custom-input {
     border-radius: 0.75rem;
     padding: 0.6rem 1rem;
+    background-color: #2d2d2d;
+    border: 1px solid #444;
+    color: #fff;
 }
 
-/* Bordes redondeados y estilo para el botón de acción principal */
+/* Estado activo/focus del input */
+.custom-input:focus {
+    background-color: #3d3d3d;
+    color: #fff;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Para que el texto ingresado no se vea negro al autocompletar */
+.custom-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #2d2d2d inset !important;
+    -webkit-text-fill-color: white !important;
+}
+
+/* Bordes redondeados para los botones */
 .custom-btn {
     border-radius: 0.75rem;
     padding: 0.75rem;
-    font-size: 1.1rem;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-/* Ajuste de comportamiento de Bootstrap para feedback de validación personalizada */
-.invalid-feedback {
-    font-size: 0.85em;
-    font-weight: 500;
+/* Clase de utilidad para ocultar/mostrar secciones en JS */
+.d-none-custom {
+    display: none !important;
 }

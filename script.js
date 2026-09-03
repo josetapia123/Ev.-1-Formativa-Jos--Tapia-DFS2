@@ -2,21 +2,69 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registroForm');
+    
+    // Contenedores de los pasos
+    const paso1 = document.getElementById('paso1');
+    const paso2 = document.getElementById('paso2');
+    
+    // Botones de navegación
+    const btnContinuar = document.getElementById('btnContinuar');
+    const btnAtras = document.getElementById('btnAtras');
+
+    // Elementos del Paso 1
+    const nombre = document.getElementById('nombre');
+    const correo = document.getElementById('correo');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+
+    // Elementos del Paso 2
+    const calle = document.getElementById('calle');
+    const comuna = document.getElementById('comuna');
+    const region = document.getElementById('region');
+
+    // --- NAVEGACIÓN ---
+
+    // Botón Continuar (De Paso 1 a Paso 2)
+    btnContinuar.addEventListener('click', () => {
+        if (validarPaso1()) {
+            // Si el paso 1 es válido, ocultamos el 1 y mostramos el 2
+            paso1.classList.add('d-none-custom');
+            paso2.classList.remove('d-none-custom');
+        }
+    });
+
+    // Botón Atrás (De Paso 2 a Paso 1)
+    btnAtras.addEventListener('click', () => {
+        paso2.classList.add('d-none-custom');
+        paso1.classList.remove('d-none-custom');
+    });
+
+    // --- ENVÍO DEL FORMULARIO ---
 
     form.addEventListener('submit', function(event) {
-        // Prevenir el envío automático del formulario
         event.preventDefault();
         
-        // Bandera para rastrear si el formulario es válido
+        // Solo se envía si el Paso 1 y 2 está validado
+        if (validarPaso2()) {
+            alert('¡Registro exitoso! Datos listos para ser procesados.');
+            form.reset(); 
+            
+            // Retornar al paso 1 visualmente tras limpiar el formulario
+            paso2.classList.add('d-none-custom');
+            paso1.classList.remove('d-none-custom');
+            
+            const inputs = form.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.classList.remove('is-valid', 'is-invalid');
+            });
+        }
+    });
+
+    // --- FUNCIONES DE VALIDACIÓN ---
+
+    function validarPaso1() {
         let isValid = true;
 
-        // Captura de elementos
-        const nombre = document.getElementById('nombre');
-        const correo = document.getElementById('correo');
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirmPassword');
-
-        // 1. Validación del Nombre (No puede estar vacío)
         if (nombre.value.trim() === '') {
             mostrarError(nombre, true);
             isValid = false;
@@ -24,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarError(nombre, false);
         }
 
-        // 2. Validación del Correo (Formato válido mediante expresión regular)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(correo.value.trim())) {
             mostrarError(correo, true);
@@ -33,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarError(correo, false);
         }
 
-        // 3. Validación de Contraseña (Mínimo 6 caracteres)
         if (password.value.length < 6) {
             mostrarError(password, true);
             isValid = false;
@@ -41,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarError(password, false);
         }
 
-        // 4. Validación de Confirmación de Contraseña (Deben coincidir)
         if (confirmPassword.value !== password.value || confirmPassword.value.length === 0) {
             mostrarError(confirmPassword, true);
             isValid = false;
@@ -49,18 +94,39 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarError(confirmPassword, false);
         }
 
-        // Si todas las validaciones pasan, se puede procesar el registro
-        if (isValid) {
-            alert('¡Registro exitoso! Datos listos para ser procesados.');
-            form.reset(); // Limpia el formulario tras el éxito
-            // Aquí podrías integrar un fetch/API call en el futuro
+        return isValid;
+    }
+
+    function validarPaso2() {
+        let isValid = true;
+
+        if (calle.value.trim() === '') {
+            mostrarError(calle, true);
+            isValid = false;
+        } else {
+            mostrarError(calle, false);
         }
-    });
+
+        if (comuna.value.trim() === '') {
+            mostrarError(comuna, true);
+            isValid = false;
+        } else {
+            mostrarError(comuna, false);
+        }
+
+        if (region.value.trim() === '') {
+            mostrarError(region, true);
+            isValid = false;
+        } else {
+            mostrarError(region, false);
+        }
+
+        return isValid;
+    }
 
     /**
-     * Función auxiliar para agregar o quitar las clases de error visual de Bootstrap
-     * @param {HTMLElement} input - El campo de entrada a validar
-     * @param {boolean} isError - Determina si se debe mostrar el error
+     * @param {HTMLElement} input
+     * @param {boolean} isError
      */
     function mostrarError(input, isError) {
         if (isError) {
