@@ -60,9 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function validarPaso1() {
         let isValid = true;
 
-        // 1. Campo no vacío
-        if (nombre.value.trim().length < 3) {
+        //  1. Validación Semántica para el Nombre
+        const valorNombre = nombre.value.trim();
+        const nombreNormalizado = valorNombre.toLowerCase(); // Convertimos a minúsculas para comparar
+
+        if (valorNombre.length < 3) {
             mostrarError(nombre, true, "El nombre debe tener al menos 3 caracteres.");
+            isValid = false;
+        } else if (nombreNormalizado === "punta arenas") {
+            // Regla de Negocio: Prohibir un nombre específico
+            mostrarError(nombre, true, "El nombre de usuario no puede ser 'Punta Arenas'.");
             isValid = false;
         } else {
             mostrarError(nombre, false);
@@ -131,6 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return isValid;
     }
+
+
+
+    
 
     /**
      * @param {HTMLElement} input
