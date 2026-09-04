@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Tienda Web</title>
-    <!-- Bootstrap -->
+    <!-- Bootstrap   -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
@@ -32,32 +33,34 @@
                         
                         <form id="registroForm" novalidate>
                             
-                            <!-- ================= PASO 1 ================= -->
+                            <!-- PASO 1: Datos de la Cuenta  -->
                             <div id="paso1">
                                 <h5 class="mb-4 text-primary">Paso 1: Datos de la Cuenta</h5>
                                 
+                                <!-- Validación minlength y maxlength -->
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre completo</label>
-                                    <input type="text" class="form-control custom-input" id="nombre" placeholder="Ej. Juan Pérez" autocomplete="name" required>
-                                    <div class="invalid-feedback" id="errorNombre">Por favor, ingresa tu nombre.</div>
+                                    <input type="text" class="form-control custom-input" id="nombre" placeholder="Ej. Juan Pérez" autocomplete="name" minlength="3" maxlength="50" required>
+                                    <div class="invalid-feedback">Por favor, ingresa tu nombre.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="correo" class="form-label">Correo electrónico</label>
-                                    <input type="email" class="form-control custom-input" id="correo" placeholder="correo@ejemplo.com" autocomplete="email" required>
-                                    <div class="invalid-feedback" id="errorCorreo">Ingresa un correo electrónico válido.</div>
+                                    <!-- Validación type="email" -->
+                                    <input type="email" class="form-control custom-input" id="correo" placeholder="correo@ejemplo.com" autocomplete="email" maxlength="80" required>
+                                    <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control custom-input" id="password" autocomplete="new-password" required>
-                                    <div class="invalid-feedback" id="errorPassword">La contraseña debe tener al menos 6 caracteres.</div>
+                                    <input type="password" class="form-control custom-input" id="password" autocomplete="new-password" minlength="8" maxlength="20" required>
+                                    <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.</div>
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
                                     <input type="password" class="form-control custom-input" id="confirmPassword" autocomplete="new-password" required>
-                                    <div class="invalid-feedback" id="errorConfirmPassword">Las contraseñas no coinciden.</div>
+                                    <div class="invalid-feedback">Las contraseñas no coinciden.</div>
                                 </div>
 
                                 <div class="d-grid mt-4">
@@ -65,26 +68,26 @@
                                 </div>
                             </div>
 
-                            <!-- ================= PASO 2 ================= -->
+                            <!--  PASO 2: Dirección de Envío  -->
                             <div id="paso2" class="d-none-custom">
                                 <h5 class="mb-4 text-primary">Paso 2: Dirección de Envío</h5>
                                 
                                 <div class="mb-3">
                                     <label for="calle" class="form-label">Calle y Número</label>
-                                    <input type="text" class="form-control custom-input" id="calle" placeholder="Ej. Av. Las Salinas 123, Las Cruces" required>
+                                    <input type="text" class="form-control custom-input" id="calle" placeholder="Ej. Av. Barros Luco 123" maxlength="60" required>
                                     <div class="invalid-feedback">Por favor, ingresa tu dirección.</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="comuna" class="form-label">Comuna / Ciudad</label>
-                                        <input type="text" class="form-control custom-input" id="comuna" placeholder="Ej. San Antonio" required>
+                                        <input type="text" class="form-control custom-input" id="comuna" placeholder="Ej. San Antonio" maxlength="40" required>
                                         <div class="invalid-feedback">Ingresa tu comuna.</div>
                                     </div>
                                     
                                     <div class="col-md-6 mb-3">
                                         <label for="region" class="form-label">Región</label>
-                                        <input type="text" class="form-control custom-input" id="region" placeholder="Ej. Valparaíso" required>
+                                        <input type="text" class="form-control custom-input" id="region" placeholder="Ej. Valparaíso" maxlength="40" required>
                                         <div class="invalid-feedback">Ingresa tu región.</div>
                                     </div>
                                 </div>
