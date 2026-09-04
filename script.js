@@ -62,18 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //  1. Validación Semántica para el Nombre
         const valorNombre = nombre.value.trim();
-        const nombreNormalizado = valorNombre.toLowerCase(); // Convertimos a minúsculas para comparar
+        const nombreNormalizado = valorNombre.toLowerCase();
 
         if (valorNombre.length < 3) {
             mostrarError(nombre, true, "El nombre debe tener al menos 3 caracteres.");
             isValid = false;
         } else if (nombreNormalizado === "punta arenas") {
-            // Regla de Negocio: Prohibir un nombre específico
             mostrarError(nombre, true, "El nombre de usuario no puede ser 'Punta Arenas'.");
             isValid = false;
         } else {
             mostrarError(nombre, false);
         }
+
+
 
         // 2. Sintáctica (Formato de correo)
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
